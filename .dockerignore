@@ -1,0 +1,23 @@
+# Ignore the Python virtual environment
+venv/
+env/
+.venv/
+
+# Ignore Python bytecode and cache
+__pycache__/
+*.pyc
+
+
+# Ignore log files
+logs/
+
+# Ignore IDE/editor-specific files
+.vscode/
+.idea/
+
+# Ignore Git files
+.git/
+.gitignore
+
+# Ignore the .env file (secrets should be passed as environment variables)
+.env

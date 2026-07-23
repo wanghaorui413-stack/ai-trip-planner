@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-dotenv
+requests
+pydantic
+sentence-transformers
+faiss-cpu
+streamlit
+pypdf2
+langchain
+langchain-huggingface
+pypdf
+python-docx
+streamlit
+langchain_community

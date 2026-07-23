@@ -1,0 +1,10 @@
+services:
+  backend:
+    command: uvicorn authenticated_main:app --host 0.0.0.0 --port 8000
+    environment:
+      APP_DB_PATH: /app/data/trip_planner.db
+      AUTH_SECRET: ${AUTH_SECRET:-local-development-secret-change-me}
+    volumes:
+      - ./data:/app/data
+  frontend:
+    command: streamlit run authenticated_streamlit_app.py --server.port 8501 --server.address 0.0.0.0 --server.enableCORS false

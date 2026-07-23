@@ -1,0 +1,444 @@
+{
+  "metadata": {
+    "name": "AI Trip Planner MVP Evaluation Cases",
+    "version": "0.1.0",
+    "stage": "MVP mock data",
+    "language": "zh-CN",
+    "data_policy": "Synthetic product evaluation scenarios only. No real user data, personal profiles, bookings, payments, or live inventory are included.",
+    "created_for": "Portfolio-grade offline evaluation of itinerary quality, budget control, preference matching, and schema completeness."
+  },
+  "test_cases": [
+    {
+      "id": "tc_001_shanghai_solo_citywalk_budget",
+      "title": "上海 2 天独行城市漫步与美食",
+      "input": {
+        "destination": "shanghai",
+        "days": 2,
+        "budget": 1800,
+        "preferences": "city_walk history food",
+        "traveler_type": "solo"
+      },
+      "expectations": {
+        "expected_preferences": ["city_walk", "history", "food"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成场景，用于检查低预算下是否优先城市步行、历史街区和本地餐饮。"
+      }
+    },
+    {
+      "id": "tc_002_shanghai_family_museum",
+      "title": "上海 3 天亲子博物馆与公园",
+      "input": {
+        "destination": "shanghai",
+        "days": 3,
+        "budget": 5200,
+        "preferences": "亲子 博物馆 公园",
+        "traveler_type": "family"
+      },
+      "expectations": {
+        "expected_preferences": ["family", "museum", "nature"],
+        "daily_poi_range": [1, 3],
+        "max_daily_hours": 7,
+        "max_warning_count": 0,
+        "notes": "合成亲子场景，关注每天 POI 数量不过载。"
+      }
+    },
+    {
+      "id": "tc_003_shanghai_business_short",
+      "title": "上海 1 天商务间隙轻量游",
+      "input": {
+        "destination": "shanghai",
+        "days": 1,
+        "budget": 1200,
+        "preferences": "landmark local_life cafe",
+        "traveler_type": "business"
+      },
+      "expectations": {
+        "expected_preferences": ["landmark", "local_life"],
+        "daily_poi_range": [1, 3],
+        "max_daily_hours": 6,
+        "max_warning_count": 0,
+        "notes": "合成商务场景，关注短天数和低负载。"
+      }
+    },
+    {
+      "id": "tc_004_hangzhou_couple_nature",
+      "title": "杭州 3 天情侣自然与文化",
+      "input": {
+        "destination": "hangzhou",
+        "days": 3,
+        "budget": 5200,
+        "preferences": "nature culture lake tea",
+        "traveler_type": "couple"
+      },
+      "expectations": {
+        "expected_preferences": ["nature", "culture", "tea"],
+        "daily_poi_range": [2, 4],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成情侣场景，关注西湖、茶文化和节奏平衡。"
+      }
+    },
+    {
+      "id": "tc_005_hangzhou_senior_tea",
+      "title": "杭州 2 天长辈茶文化慢游",
+      "input": {
+        "destination": "hangzhou",
+        "days": 2,
+        "budget": 3400,
+        "preferences": "茶文化 自然 轻松",
+        "traveler_type": "senior"
+      },
+      "expectations": {
+        "expected_preferences": ["tea", "nature", "relaxed"],
+        "daily_poi_range": [1, 3],
+        "max_daily_hours": 6.5,
+        "max_warning_count": 0,
+        "notes": "合成长辈场景，关注舒缓节奏和自然文化。"
+      }
+    },
+    {
+      "id": "tc_006_hangzhou_friends_food",
+      "title": "杭州 2 天朋友本地生活与美食",
+      "input": {
+        "destination": "hangzhou",
+        "days": 2,
+        "budget": 5000,
+        "preferences": "food local_life shopping",
+        "traveler_type": "friends"
+      },
+      "expectations": {
+        "expected_preferences": ["food", "local_life", "shopping"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8.5,
+        "max_warning_count": 0,
+        "notes": "合成朋友出游场景，关注本地街区和餐饮体验。"
+      }
+    },
+    {
+      "id": "tc_007_chengdu_friends_food",
+      "title": "成都 3 天朋友美食与夜生活",
+      "input": {
+        "destination": "chengdu",
+        "days": 3,
+        "budget": 6200,
+        "preferences": "火锅 美食 夜生活",
+        "traveler_type": "friends"
+      },
+      "expectations": {
+        "expected_preferences": ["food", "nightlife", "experience"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8.5,
+        "max_warning_count": 0,
+        "notes": "合成多人场景，关注美食体验和晚间活动提示。"
+      }
+    },
+    {
+      "id": "tc_008_chengdu_family_panda",
+      "title": "成都 2 天亲子熊猫与公园",
+      "input": {
+        "destination": "chengdu",
+        "days": 2,
+        "budget": 4200,
+        "preferences": "亲子 熊猫 自然",
+        "traveler_type": "family"
+      },
+      "expectations": {
+        "expected_preferences": ["family", "nature"],
+        "daily_poi_range": [1, 3],
+        "max_daily_hours": 7,
+        "max_warning_count": 0,
+        "notes": "合成亲子场景，关注亲子适配和自然类 POI。"
+      }
+    },
+    {
+      "id": "tc_009_chengdu_senior_relaxed",
+      "title": "成都 3 天长辈茶馆慢游",
+      "input": {
+        "destination": "chengdu",
+        "days": 3,
+        "budget": 5200,
+        "preferences": "茶馆 轻松 文化",
+        "traveler_type": "senior"
+      },
+      "expectations": {
+        "expected_preferences": ["tea", "relaxed", "culture"],
+        "daily_poi_range": [1, 3],
+        "max_daily_hours": 6.5,
+        "max_warning_count": 0,
+        "notes": "合成长辈场景，检查节奏和偏好说明。"
+      }
+    },
+    {
+      "id": "tc_010_tokyo_solo_culture",
+      "title": "东京 3 天独行文化馆线",
+      "input": {
+        "destination": "tokyo",
+        "days": 3,
+        "budget": 6000,
+        "preferences": "museum culture food",
+        "traveler_type": "solo"
+      },
+      "expectations": {
+        "expected_preferences": ["museum", "culture", "food"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成海外场景，检查目的地成本系数下的预算适配。"
+      }
+    },
+    {
+      "id": "tc_011_tokyo_friends_shopping",
+      "title": "东京 4 天朋友购物与街区",
+      "input": {
+        "destination": "tokyo",
+        "days": 4,
+        "budget": 13000,
+        "preferences": "shopping food city_walk",
+        "traveler_type": "friends"
+      },
+      "expectations": {
+        "expected_preferences": ["shopping", "food", "city_walk"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8.5,
+        "max_warning_count": 0,
+        "notes": "合成朋友购物场景，关注兴趣匹配和预算控制。"
+      }
+    },
+    {
+      "id": "tc_012_tokyo_family_museum",
+      "title": "东京 3 天家庭博物馆与公园",
+      "input": {
+        "destination": "tokyo",
+        "days": 3,
+        "budget": 10500,
+        "preferences": "family museum park",
+        "traveler_type": "family"
+      },
+      "expectations": {
+        "expected_preferences": ["family", "museum", "nature"],
+        "daily_poi_range": [1, 3],
+        "max_daily_hours": 7,
+        "max_warning_count": 0,
+        "notes": "合成家庭海外场景，关注不把行程排得过满。"
+      }
+    },
+    {
+      "id": "tc_013_kyoto_couple_history",
+      "title": "京都 3 天情侣历史寺社",
+      "input": {
+        "destination": "kyoto",
+        "days": 3,
+        "budget": 7200,
+        "preferences": "temple history culture",
+        "traveler_type": "couple"
+      },
+      "expectations": {
+        "expected_preferences": ["history", "culture"],
+        "daily_poi_range": [2, 4],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成京都文化场景，关注寺社与文化偏好。"
+      }
+    },
+    {
+      "id": "tc_014_kyoto_solo_experience",
+      "title": "京都 2 天独行茶道体验",
+      "input": {
+        "destination": "kyoto",
+        "days": 2,
+        "budget": 4600,
+        "preferences": "tea ceremony experience culture",
+        "traveler_type": "solo"
+      },
+      "expectations": {
+        "expected_preferences": ["tea", "experience", "culture"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成体验型场景，关注是否能安排明确体验项目。"
+      }
+    },
+    {
+      "id": "tc_015_kyoto_senior_relaxed",
+      "title": "京都 3 天长辈自然文化慢游",
+      "input": {
+        "destination": "kyoto",
+        "days": 3,
+        "budget": 7800,
+        "preferences": "nature culture relaxed",
+        "traveler_type": "senior"
+      },
+      "expectations": {
+        "expected_preferences": ["nature", "culture", "relaxed"],
+        "daily_poi_range": [1, 3],
+        "max_daily_hours": 6.5,
+        "max_warning_count": 0,
+        "notes": "合成长辈海外场景，关注文化自然与低负载。"
+      }
+    },
+    {
+      "id": "tc_016_beijing_solo_history",
+      "title": "北京 2 天独行历史博物馆",
+      "input": {
+        "destination": "beijing",
+        "days": 2,
+        "budget": 2600,
+        "preferences": "history museum landmark",
+        "traveler_type": "solo"
+      },
+      "expectations": {
+        "expected_preferences": ["history", "museum", "landmark"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成泛化目的地场景，检查非内置 POI 城市的兜底能力。"
+      }
+    },
+    {
+      "id": "tc_017_guangzhou_business_food",
+      "title": "广州 2 天商务美食轻游",
+      "input": {
+        "destination": "guangzhou",
+        "days": 2,
+        "budget": 2500,
+        "preferences": "food local_life",
+        "traveler_type": "business"
+      },
+      "expectations": {
+        "expected_preferences": ["food", "local_life"],
+        "daily_poi_range": [1, 3],
+        "max_daily_hours": 6,
+        "max_warning_count": 0,
+        "notes": "合成商务泛化城市场景，关注短平快推荐。"
+      }
+    },
+    {
+      "id": "tc_018_shenzhen_family_nature",
+      "title": "深圳 2 天家庭自然与购物",
+      "input": {
+        "destination": "shenzhen",
+        "days": 2,
+        "budget": 4800,
+        "preferences": "family nature shopping",
+        "traveler_type": "family"
+      },
+      "expectations": {
+        "expected_preferences": ["family", "nature", "shopping"],
+        "daily_poi_range": [1, 3],
+        "max_daily_hours": 7,
+        "max_warning_count": 0,
+        "notes": "合成家庭泛化城市场景，关注泛化标签匹配。"
+      }
+    },
+    {
+      "id": "tc_019_osaka_friends_nightlife",
+      "title": "大阪 3 天朋友美食夜生活",
+      "input": {
+        "destination": "osaka",
+        "days": 3,
+        "budget": 10000,
+        "preferences": "food nightlife shopping",
+        "traveler_type": "friends"
+      },
+      "expectations": {
+        "expected_preferences": ["food", "nightlife", "shopping"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8.5,
+        "max_warning_count": 0,
+        "notes": "合成海外泛化城市场景，关注夜生活偏好是否被显式响应。"
+      }
+    },
+    {
+      "id": "tc_020_xian_couple_history",
+      "title": "西安 3 天情侣历史文化",
+      "input": {
+        "destination": "xian",
+        "days": 3,
+        "budget": 5600,
+        "preferences": "history culture museum",
+        "traveler_type": "couple"
+      },
+      "expectations": {
+        "expected_preferences": ["history", "culture", "museum"],
+        "daily_poi_range": [2, 4],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成泛化城市场景，关注历史文化推荐质量。"
+      }
+    },
+    {
+      "id": "tc_021_shanghai_couple_experience",
+      "title": "上海 3 天情侣体验优先",
+      "input": {
+        "destination": "shanghai",
+        "days": 3,
+        "budget": 8000,
+        "preferences": "viewpoint experience food",
+        "traveler_type": "couple"
+      },
+      "expectations": {
+        "expected_preferences": ["viewpoint", "experience", "food"],
+        "daily_poi_range": [2, 4],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成体验预算场景，关注观景和体验型项目。"
+      }
+    },
+    {
+      "id": "tc_022_hangzhou_solo_low_budget",
+      "title": "杭州 1 天独行低预算自然线",
+      "input": {
+        "destination": "hangzhou",
+        "days": 1,
+        "budget": 900,
+        "preferences": "nature city_walk",
+        "traveler_type": "solo"
+      },
+      "expectations": {
+        "expected_preferences": ["nature", "city_walk"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成极短行程场景，关注无住宿夜数时预算估算。"
+      }
+    },
+    {
+      "id": "tc_023_chengdu_solo_budget_food",
+      "title": "成都 2 天独行经济美食",
+      "input": {
+        "destination": "chengdu",
+        "days": 2,
+        "budget": 1700,
+        "preferences": "food local_life",
+        "traveler_type": "solo"
+      },
+      "expectations": {
+        "expected_preferences": ["food", "local_life"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8,
+        "max_warning_count": 0,
+        "notes": "合成经济预算场景，检查美食偏好与低预算平衡。"
+      }
+    },
+    {
+      "id": "tc_024_kyoto_friends_market",
+      "title": "京都 2 天朋友市场与本地生活",
+      "input": {
+        "destination": "kyoto",
+        "days": 2,
+        "budget": 7600,
+        "preferences": "food local_life shopping",
+        "traveler_type": "friends"
+      },
+      "expectations": {
+        "expected_preferences": ["food", "local_life", "shopping"],
+        "daily_poi_range": [2, 5],
+        "max_daily_hours": 8.5,
+        "max_warning_count": 0,
+        "notes": "合成朋友海外场景，关注市场、本地生活和购物偏好。"
+      }
+    }
+  ]
+}

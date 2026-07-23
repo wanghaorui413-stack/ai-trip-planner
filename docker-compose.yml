@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  # The FastAPI Backend Service
+  backend:
+    build: .
+    env_file:
+      - .env
+    command: uvicorn single_main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    healthcheck:
+      # This test command pings our new /health endpoint
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  # The Streamlit Frontend Service
+  frontend:
+    build: .
+    command: streamlit run streamlit_app.py --server.port 8501 --server.address 0.0.0.0 --server.enableCORS false
+    environment:
+      API_URL: http://backend:8000
+    ports:
+      - "8501:8501"
+    # This tells the frontend to wait for the backend to be healthy before starting
+    depends_on:
+      backend:
+        condition: service_healthy

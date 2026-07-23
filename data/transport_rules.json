@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "city_code": "shanghai",
+    "city_name": "上海",
+    "data_type": "demo_mock_data",
+    "version": "mvp-2026-07",
+    "source_note": "MVP 交通估算规则，用于行程规划演示，不代表实时路况、官方票价、平台计价或可用车辆。"
+  },
+  "currency": "CNY",
+  "distance_unit": "km",
+  "time_unit": "minute",
+  "rules": [
+    {
+      "mode": "walking",
+      "mode_name": "步行",
+      "enabled": true,
+      "recommended_distance_km": {
+        "min": 0,
+        "max": 2.5
+      },
+      "default_speed_kmh": 4.5,
+      "base_time_minutes": 0,
+      "time_formula": "ceil(distance_km / default_speed_kmh * 60) + weather_buffer_minutes",
+      "base_cost_cny": 0,
+      "cost_per_km_cny": 0,
+      "minimum_cost_cny": 0,
+      "cost_formula": "0",
+      "buffers": {
+        "weather_buffer_minutes": 5,
+        "large_intersection_buffer_minutes": 3,
+        "photo_stop_buffer_minutes": 10
+      },
+      "routing_notes": [
+        "适合外滩、南京路、武康路、愚园路等街区内短距离串联。",
+        "夏季高温、暴雨或携带行李时应降低步行优先级。",
+        "夜间步行优先选择主路和滨江开放区域。"
+      ]
+    },
+    {
+      "mode": "metro",
+      "mode_name": "地铁",
+      "enabled": true,
+      "recommended_distance_km": {
+        "min": 2.0,
+        "max": 45.0
+      },
+      "default_in_vehicle_speed_kmh": 32.0,
+      "base_time_minutes": 12,
+      "time_formula": "ceil(distance_km / default_in_vehicle_speed_kmh * 60) + base_time_minutes + transfer_count * transfer_buffer_minutes",
+      "base_cost_cny": 3,
+      "minimum_cost_cny": 3,
+      "cost_formula": "match distance_km to fare_tiers",
+      "transfer_buffer_minutes": 8,
+      "fare_tiers": [
+        {
+          "max_distance_km": 6,
+          "estimated_cost_cny": 3
+        },
+        {
+          "max_distance_km": 16,
+          "estimated_cost_cny": 4
+        },
+        {
+          "max_distance_km": 26,
+          "estimated_cost_cny": 5
+        },
+        {
+          "max_distance_km": 36,
+          "estimated_cost_cny": 6
+        },
+        {
+          "max_distance_km": 46,
+          "estimated_cost_cny": 7
+        },
+        {
+          "max_distance_km": 60,
+          "estimated_cost_cny": 8
+        }
+      ],
+      "buffers": {
+        "station_entry_exit_minutes": 8,
+        "peak_hour_buffer_minutes": 10,
+        "last_train_risk_buffer_minutes": 20
+      },
+      "routing_notes": [
+        "适合跨区移动和高峰期避开地面拥堵。",
+        "临港、朱家角、迪士尼等远距离目的地应额外预留进出站和换乘时间。",
+        "深夜行程需要检查末班车时间，并准备打车备选。"
+      ]
+    },
+    {
+      "mode": "taxi",
+      "mode_name": "打车",
+      "enabled": true,
+      "recommended_distance_km": {
+        "min": 1.5,
+        "max": 35.0
+      },
+      "default_city_speed_kmh": 24.0,
+      "base_time_minutes": 6,
+      "time_formula": "ceil(distance_km / default_city_speed_kmh * 60) + base_time_minutes + traffic_buffer_minutes",
+      "base_cost_cny": 16,
+      "minimum_cost_cny": 16,
+      "cost_per_km_cny": 3.2,
+      "cost_formula": "max(minimum_cost_cny, base_cost_cny + max(0, distance_km - included_distance_km) * cost_per_km_cny) + time_surcharge_cny",
+      "included_distance_km": 3.0,
+      "buffers": {
+        "traffic_buffer_minutes": 15,
+        "rain_buffer_minutes": 20,
+        "airport_station_pickup_buffer_minutes": 20
+      },
+      "surcharges": {
+        "night_multiplier": 1.2,
+        "peak_hour_multiplier": 1.15,
+        "time_surcharge_cny": 0
+      },
+      "routing_notes": [
+        "适合携带行李、多人同行、夜间或目的地离地铁站较远的场景。",
+        "早晚高峰、雨天、展会或大型活动期间应提高时间和费用估算。",
+        "该规则是 Demo 估算，不接任何真实叫车平台或支付能力。"
+      ]
+    }
+  ],
+  "selection_hints": [
+    {
+      "scenario": "same_neighborhood",
+      "preferred_modes": ["walking"],
+      "description": "同一街区内小于 2 公里，优先步行并保留拍照和等红灯时间。"
+    },
+    {
+      "scenario": "cross_district_daytime",
+      "preferred_modes": ["metro", "taxi"],
+      "description": "白天跨区移动优先地铁，带老人、小孩或行李时可改用打车。"
+    },
+    {
+      "scenario": "late_night_or_rain",
+      "preferred_modes": ["taxi"],
+      "description": "深夜、暴雨或末班车后优先打车，并增加等待和拥堵缓冲。"
+    }
+  ]
+}
